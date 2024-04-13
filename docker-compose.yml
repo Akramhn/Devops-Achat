@@ -3,7 +3,7 @@ version: '3.8'
 services:
   spring-boot-app:
     image: malakhm/achat:1.0
-    container_name: malakhm/achat:1.0
+    container_name: achat_container
     ports:
       - "9090:9090"
     environment:
