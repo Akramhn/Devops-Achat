@@ -13,7 +13,7 @@ services:
   achat:
     depends_on:
       - mysqldb
-    image: oussemaamri01/achat:1.0
+    image: oussemaamri01/achat-1.0
     restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: ""  # Set to an empty string
@@ -24,3 +24,4 @@ services:
 
 volumes:
   db:
+
