@@ -16,7 +16,7 @@ services:
 
   mysql-db:
     image: mysql:5.6
-    container_name: spartacus_foyer_mysql
+    container_name: mysql_achat
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: achatdb
