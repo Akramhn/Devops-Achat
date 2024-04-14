@@ -1,30 +1,26 @@
-version: '3.8'
-
+version: "3.8"
 services:
-  spring-boot-app:
-    image: malakhm/achat:1.0
-    container_name: achat_container
-    ports:
-      - "9090:9090"
+  mysqldb:
+    image: mysql:5.7
+    restart: unless-stopped
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-    depends_on:
-      - mysql-db
-    restart: always
-
-  mysql-db:
-    image: mysql:5.6
-    container_name: achatmysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: achatdb
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
-      - db_data:/var/lib/mysql
-    restart: always
+      - db:/var/lib/mysql
+
+  achat:
+    depends_on:
+      - mysqldb
+    image: oussemaamri01/achat:1.0
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: ""  # Set to an empty string
+    ports:
+      - "8089:8089"
+    stdin_open: true
+    tty: true
 
 volumes:
-  db_data:
+  db:
