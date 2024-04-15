@@ -15,8 +15,10 @@ public class CategorieProduitController {
 
 	@Autowired
 	ICategorieProduitService categorieProduitService;
-	
+
 	// http://localhost:8089/SpringMVC/categorieProduit/retrieve-all-categorieProduit
+
+
 	@GetMapping("/retrieve-all-categorieProduit")
 	@ResponseBody
 	public List<CategorieProduit> getCategorieProduit() {
@@ -53,5 +55,5 @@ public class CategorieProduitController {
 		return categorieProduitService.updateCategorieProduit(categorieProduit);
 	}
 
-	
+
 }
