@@ -1,5 +1,6 @@
 package tn.esprit.rh.achat.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.rh.achat.entities.CategorieProduit;
 import tn.esprit.rh.achat.repositories.CategorieProduitRepository;
@@ -9,6 +10,8 @@ import java.util.List;
 @Service
 public class CategorieProduitServiceImpl implements ICategorieProduitService {
 
+
+	@Autowired
 	CategorieProduitRepository categorieProduitRepository;
 	@Override
 	public List<CategorieProduit> retrieveAllCategorieProduits() {
@@ -18,7 +21,8 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 
 	@Override
 	public CategorieProduit addCategorieProduit(CategorieProduit cp) {
-		return categorieProduitRepository.save(cp);
+		categorieProduitRepository.save(cp);
+		return cp;
 	}
 
 	@Override
@@ -35,7 +39,8 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 
 	@Override
 	public CategorieProduit retrieveCategorieProduit(Long id) {
-		return categorieProduitRepository.findById(id).orElse(null);
+		CategorieProduit categorieProduit = categorieProduitRepository.findById(id).orElse(null);
+		return categorieProduit;
 	}
 
 }
